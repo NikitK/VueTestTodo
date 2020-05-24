@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TodoHeader />
+  <Main/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TodoHeader from "./components/header/TodoHeader.vue";
+import Main from './components/Main.vue';
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    TodoHeader,
+    Main,
   }
-}
+};
 </script>
 
 <style>
+@import url("assets/css/normalize.css");
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
