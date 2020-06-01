@@ -2,7 +2,14 @@
   <div class="my-todo-card">
     <InputText v-model="newTodoText" placeholder="Новая задача" @keydown.enter="addTodo" />
     <ul v-if="todos.length">
-      <ListItem v-for="todo in todos" :key="todo.id" :todo="todo" @remove="removeTodo" />
+      <ListItem
+        v-for="(todo, index) in todos"
+        :key="todo.id"
+        :index="index"
+        :todo="todo"
+        @remove="removeTodo"
+        @completed="completedTodo"
+      />
     </ul>
     <p v-else>Введите задачу и нажмите "enter"</p>
     <button @click="$emit('remove', card.id)">&#x2718;</button>
@@ -20,7 +27,8 @@ export default {
     card: {
       type: Object,
       required: true
-    }
+    },
+
   },
   components: {
     InputText,
@@ -29,7 +37,7 @@ export default {
   data() {
     return {
       newTodoText: "",
-      todos: []
+      todos:[]
     };
   },
   methods: {
@@ -38,15 +46,27 @@ export default {
       if (trimmedText) {
         this.todos.push({
           id: nextListId++,
+          completed:'',
           text: trimmedText
         });
         this.newTodoText = "";
+      }else{
+        alert('ввдите текст!')
       }
     },
     removeTodo(idToRemove) {
-      this.todos = this.todos.filter(todo => {
-        return todo.id !== idToRemove;
+    this.todos = this.todos.filter(todo => {
+        return  todo.id !== idToRemove;
+      }); 
+    },
+    completedTodo(idCompleted){
+    this.todos = this.todos.filter(todo => {
+        if(todo.id == idCompleted){
+          todo.completed = true;
+        }
+        return todo;
       });
+
     }
   }
 };
@@ -58,6 +78,7 @@ export default {
 }
 .my-todo-card {
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   width: 15%;
@@ -71,5 +92,19 @@ export default {
 ul {
   list-style-type: none;
   padding: 0;
+}
+button {
+  position: absolute;
+  top: 5%;
+  background-color: inherit;
+  right: 5%;
+  color: #fff;
+  height: 26px;
+  border: 1px solid #00bcd4;
+  border-radius: 55%;
+  cursor: pointer;
+}
+button:focus{
+  outline: none;
 }
 </style>

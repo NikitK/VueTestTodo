@@ -1,8 +1,9 @@
 <template>
   <div class="wrap">
-    <DeskItem v-for="card in cards" :key="card.id" :card="card" @remove="removeCard" />
-    <div class="add-card">
-      <span @click="addCard">+add</span>
+    <DeskItem  v-for="card in cards" :key="card.id" :card="card" @remove="removeCard"></DeskItem>
+
+    <div v-if="this.cards.length < 5"  class="add-card">
+      <span @click="addCard">+Add Card</span>
     </div>
   </div>
 </template>
@@ -26,13 +27,11 @@ export default {
   },
   methods: {
     addCard() {
-      if (this.cards.length < 9) {
+      if (this.cards.length < 5) {
         this.cards.push({
           id: nextCardId++
         });
-      } else {
-        alert("Максимальное число карточек , достигнуто");
-      }
+      } 
     },
     removeCard(idToRemove) {
       this.cards = this.cards.filter(card => {
@@ -62,5 +61,7 @@ export default {
   cursor: pointer;
   display: block;
   margin: 60% auto;
+  font-weight: bold;
+  opacity: 0.4;
 }
 </style>

@@ -7,7 +7,7 @@
       </form>
     </div>
     <div v-else class="list-name">
-      <h1>{{listName}}</h1>
+      <h1>{{listName | capitalize}}</h1>
       <span v-on:click="editName">&#9998;</span>
     </div>
   </header>
@@ -37,7 +37,14 @@ export default {
     editName: function() {
       this.isActive = true;
     }
+  },
+  filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
   }
+}
 };
 </script>
 <style>
@@ -55,13 +62,11 @@ export default {
 .list-name {
   position: relative;
   min-width: 400px;
-  margin-right: 60px;
 }
 .list-name h1 {
   position: relative;
   font-size: 50px;
   color: #fff;
-  text-transform: capitalize;
   font-weight: bold;
   cursor: default;
   margin: 0;
@@ -98,6 +103,6 @@ export default {
   cursor: pointer;
 }
 .header input {
-  max-width: 300px;
+  max-width: 200px;
 }
 </style>

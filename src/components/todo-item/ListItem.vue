@@ -1,7 +1,7 @@
 <template>
   <li>
-    <button v-on:click="completedTodo">&#x2714;</button>
-      <span v-bind:style="{textDecoration:compl}">{{ todo.text }}</span>
+    <button @click="$emit('completed', todo.id)">&#x2714;</button>
+      <span :class="{completed:todo.completed}">{{index + 1 +'.'+ todo.text }}</span>
     <button @click="$emit('remove', todo.id)">&#x2718;</button>
   </li>
 </template>
@@ -12,21 +12,17 @@ export default {
     todo: {
       type: Object,
       required: true
+    },
+    index:{
+      type:Number
     }
-  },
-  data(){
-    return{
-      compl:'none'
-    }
-  },
-  methods:{
-    completedTodo(){
-      this.compl='line-through'
-    }
-  }
+  },  
 };
 </script>
 <style scoped>
+.completed{
+  text-decoration:line-through;
+}
 li {
   display: flex;
   width: 130px;
@@ -36,7 +32,14 @@ li {
   overflow-wrap: anywhere;
 }
 li button{
-  max-height: 25px;
+  color: #fff;
+  background-color: inherit;
+  height: 26px;
+  border: 1px solid #00bcd4;
+  border-radius: 55%;
   cursor: pointer;
+}
+li button:focus{
+  outline: none;
 }
 </style>

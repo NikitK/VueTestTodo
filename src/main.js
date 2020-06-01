@@ -4,6 +4,9 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import "normalize.css"
 
+import store from './store'
+import router from '@/plugins/router'
+
 const requireComponent = require.context(
   // Относительный путь до каталога компонентов
   './components',
@@ -27,7 +30,6 @@ requireComponent.keys().forEach(fileName => {
         .replace(/\.\w+$/, '')
     )
   )
-
   // Глобальная регистрация компонента
   Vue.component(
     componentName,
@@ -40,5 +42,7 @@ requireComponent.keys().forEach(fileName => {
 Vue.config.productionTip = false
 
 new Vue({
+  router,
+  store,
   render: h => h(App),
 }).$mount('#app')
