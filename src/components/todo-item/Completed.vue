@@ -41,12 +41,7 @@ export default {
     ]),
     updateCardFilde() {
       this.test = this.allCompletedCard.length
-      // this.removeAllCard();
-    },
-    check() {
-      if (this.allCompletedCard.length > 1) {
-        console.log("test!");
-      }
+      this.removeAllCard();
     }
   }
 };
