@@ -1,7 +1,6 @@
 <template>
   <div class="div">
     <div class="wrap">
-      <h2>{{this.cardCompletedCounter}}</h2>
       <div v-if="allCompletedCard.length" class="desk-item-wrapper">
         <DeskItem class="active" v-for="card in allCompletedCard" :key="card.id" :card="card" />
         <span class="updateCardFilde" @click="updateCardFilde">Нажмите , чтобы обновить поле!</span>
@@ -20,24 +19,17 @@
 <script>
 import DeskItem from "@/components/todo-item/DeskItem.vue";
 import { mapGetters, mapMutations } from "vuex";
-let a = JSON.parse(localStorage.getItem('cards')).length;
 export default {
   components: {
     DeskItem
-  },
-  data() {
-    return {
-      cardCompletedCounter: a
-    }
   },
   computed: {
     ...mapGetters(["allCompletedCard"]),
     watchUpdate: function() {
       if (this.allCompletedCard.length > 0) {
         this.updateStore();
- 
       }
-      return this.cardCompletedCounter + 1;
+      return "test";
     }
   },
   methods: {
@@ -48,7 +40,13 @@ export default {
       "removeAllCard"
     ]),
     updateCardFilde() {
-      this.removeAllCard();
+      this.test = this.allCompletedCard.length
+      // this.removeAllCard();
+    },
+    check() {
+      if (this.allCompletedCard.length > 1) {
+        console.log("test!");
+      }
     }
   }
 };

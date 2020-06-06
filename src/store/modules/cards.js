@@ -4,7 +4,8 @@ export default {
             commit
         }, card) {
             commit('createCard', card)
-        },updateStore({
+        },
+        updateStore({
             commit
         }) {
             commit('updateStore')
@@ -13,7 +14,12 @@ export default {
             commit
         }, idToRemove) {
             commit('removeTodo', idToRemove)
-        }
+        },
+        removeAllCard({
+            commit
+        }) {
+            commit('updateStore')
+        },
 
     },
     mutations: {
@@ -31,7 +37,7 @@ export default {
             });
             localStorage.setItem('cards', JSON.stringify(state.cards))
         },
-        removeAllCard(state){
+        removeAllCard(state) {
             state.cards = [];
             localStorage.setItem('cards', JSON.stringify(state.cards))
         }
@@ -43,13 +49,13 @@ export default {
         allCards(state) {
             return state.cards;
         },
-        allCompletedCard(state){
-           return  state.cards.filter(item=>{
-                if(item.completed == true){
+        allCompletedCard(state) {
+            return state.cards.filter(item => {
+                if (item.completed == true) {
                     return item
                 }
             })
-           
+
         }
     }
 }

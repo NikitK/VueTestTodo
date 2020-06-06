@@ -1,36 +1,35 @@
 <template>
   <li>
     <button @click="completed">&#x2714;</button>
-      <span :class="{completed:todo.completed}">{{index + 1 +'.'+ todo.text }}</span>
+    <span :class="{completed:todo.completed}">{{index + 1 +'.'+ todo.text }}</span>
     <button @click="$emit('remove', todo.id)">&#x2718;</button>
   </li>
 </template>
 
 <script>
-import { mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 export default {
   props: {
     todo: {
       type: Object,
       required: true
     },
-    index:{
-      type:Number
+    index: {
+      type: Number
     }
   },
-  methods:{
+  methods: {
     ...mapMutations(["updateStore"]),
-    completed(){
-      this.todo.completed = true
-      this.updateStore()
+    completed() {
+      this.todo.completed = true;
+      this.updateStore();
     }
   }
 };
-
 </script>
 <style scoped>
-.completed{
-  text-decoration:line-through;
+.completed {
+  text-decoration: line-through;
 }
 li {
   display: flex;
@@ -40,7 +39,7 @@ li {
   align-items: center;
   overflow-wrap: anywhere;
 }
-li button{
+li button {
   color: #fff;
   background-color: inherit;
   height: 26px;
@@ -48,7 +47,7 @@ li button{
   border-radius: 55%;
   cursor: pointer;
 }
-li button:focus{
+li button:focus {
   outline: none;
 }
 </style>

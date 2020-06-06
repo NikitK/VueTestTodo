@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-          <h1 class="my-titel">TodoApp</h1>
-          <router-link  to="/todos">Доска</router-link>
-          <router-link  to="/">Выполненне задачи</router-link>
-    <router-view/>
+    <h1 class="my-titel">TodoApp</h1>
+    <router-link to="/todos">Доска</router-link>
+    <router-link to="/">Выполненне задачи</router-link>
+    <router-view />
   </div>
 </template>
 
@@ -15,13 +15,14 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-html , body {
+html,
+body {
   height: 100%;
-  color:#fff;
+  color: #fff;
   background-color: rgba(0, 0, 0, 0.521);
 }
-.my-titel{
-  margin:0;
-  color:#fff;
+.my-titel {
+  margin: 0;
+  color: #fff;
 }
 </style>

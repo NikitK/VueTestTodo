@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["allTodos", "getTodoById","allCompletedCard"])
+    ...mapGetters(["allTodos", "getTodoById", "allCompletedCard"])
   },
   components: {
     InputText,
@@ -42,7 +42,7 @@ export default {
   data() {
     return {
       newTodoText: "",
-      counter:0,
+      counter: 0,
       id: Date.now()
     };
   },
@@ -75,14 +75,14 @@ export default {
       this.updateStore();
     },
     completedCard() {
-     this.card.todos.filter((todo, i) => {
-        if (todo.completed == true){
+      this.card.todos.filter((todo, i) => {
+        if (todo.completed == true) {
           this.card.completed = true;
         } else {
-          alert("Вы не выполнили задачу: " + (i+1)+"."+todo.text);
+          alert("Вы не выполнили задачу: " + (i + 1) + "." + todo.text);
         }
       });
-      this.updateStore()
+      this.updateStore();
       console.log(this.card);
     }
   }
@@ -93,8 +93,8 @@ export default {
 * {
   font-size: 14px;
 }
-.displayN{
-  display: none!important;
+.displayN {
+  display: none !important;
 }
 .my-todo-card {
   display: flex;
