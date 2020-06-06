@@ -1,42 +1,35 @@
 <template>
   <div class="wrap">
-    <DeskItem  v-for="card in cards" :key="card.id" :card="card" @remove="removeCard"></DeskItem>
-
-    <div v-if="this.cards.length < 5"  class="add-card">
+    <DeskItem v-for="card in allCards" :key="card.id" :card="card" @remove="removeCard"></DeskItem>
+    <div v-if="this.allCards.length < 5" class="add-card">
       <span @click="addCard">+Add Card</span>
     </div>
   </div>
 </template>
 <script>
 import DeskItem from "./todo-item/DeskItem.vue";
+import { mapGetters, mapMutations } from "vuex";
 
-let nextCardId = 1;
 export default {
   name: "Main",
   components: {
     DeskItem
   },
-  data() {
-    return {
-      cards: [
-        {
-          id: nextCardId++
-        }
-      ]
-    };
+  computed: {
+    ...mapGetters(["allCards"])
   },
   methods: {
+    ...mapMutations(["removeCardById", "createCard","updateStore"]),
     addCard() {
-      if (this.cards.length < 5) {
-        this.cards.push({
-          id: nextCardId++
-        });
-      } 
+      const card = {
+        id: Date.now(),
+        completed:false,
+        todos: []
+      };
+      this.createCard(card);
     },
     removeCard(idToRemove) {
-      this.cards = this.cards.filter(card => {
-        return card.id !== idToRemove;
-      });
+      this.removeCardById(idToRemove);
     }
   }
 };

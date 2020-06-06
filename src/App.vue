@@ -1,8 +1,8 @@
 <template>
   <div id="app">
           <h1 class="my-titel">TodoApp</h1>
-          <router-link to="/todos">Todos</router-link>
-          <router-link to="/">Home</router-link>
+          <router-link  to="/todos">Доска</router-link>
+          <router-link  to="/">Выполненне задачи</router-link>
     <router-view/>
   </div>
 </template>

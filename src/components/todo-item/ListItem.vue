@@ -1,12 +1,13 @@
 <template>
   <li>
-    <button @click="$emit('completed', todo.id)">&#x2714;</button>
+    <button @click="completed">&#x2714;</button>
       <span :class="{completed:todo.completed}">{{index + 1 +'.'+ todo.text }}</span>
     <button @click="$emit('remove', todo.id)">&#x2718;</button>
   </li>
 </template>
 
 <script>
+import { mapMutations} from "vuex";
 export default {
   props: {
     todo: {
@@ -16,8 +17,16 @@ export default {
     index:{
       type:Number
     }
-  },  
+  },
+  methods:{
+    ...mapMutations(["updateStore"]),
+    completed(){
+      this.todo.completed = true
+      this.updateStore()
+    }
+  }
 };
+
 </script>
 <style scoped>
 .completed{
@@ -25,7 +34,7 @@ export default {
 }
 li {
   display: flex;
-  width: 130px;
+  width: 200px;
   padding: 8px 0;
   justify-content: space-between;
   align-items: center;
